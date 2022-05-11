@@ -82,8 +82,8 @@
 
 
 		<!-- 底部导航 -->
-		<u-tabbar :value="tabbar.value" @change="tabbarChange" size="50rpx" activeColor="#0aa0fa">
-			<u-tabbar-item text="首页">
+		<!-- <u-tabbar :value="tabbar.value" @change="tabbarChange" size="50rpx" activeColor="#0aa0fa">
+			<u-tabbar-item text="首页" >
 				<i class="iconfont icon-home" slot="active-icon" style="color: #0aa0fa;"></i>
 				<i class="iconfont icon-home" slot="inactive-icon"></i>
 			</u-tabbar-item>
@@ -99,13 +99,17 @@
 				<i class="iconfont icon-user" slot="active-icon" style="color: #0aa0fa;"></i>
 				<i class="iconfont icon-user" slot="inactive-icon"></i>
 			</u-tabbar-item>
-		</u-tabbar>
-
+		</u-tabbar> -->
+		<tabbar :value="0"></tabbar>
 	</view>
 </template>
 
 <script>
+	import tabbar from '../../components/public/tabbar.vue'
 	export default {
+		components:{
+		     tabbar
+		},
 		data() {
 			return {
 				// 顶部导航数据
@@ -208,6 +212,7 @@
 			// 底部点击事件
 			tabbarChange(e) {
 				console.log(e)
+				
 			}
 		}
 	}

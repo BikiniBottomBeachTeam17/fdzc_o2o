@@ -14,4 +14,12 @@
 
 <style>
 	/*每个页面公共css */
+	@import url("./static/iconfont/iconfont.css");
+
+	.page{
+		width: 100%;
+		height: 100%;
+		background-color: rgb(240,240,240);
+		position: absolute;
+	}
 </style>

@@ -82,24 +82,6 @@
 
 
 		<!-- 底部导航 -->
-		<!-- <u-tabbar :value="tabbar.value" @change="tabbarChange" size="50rpx" activeColor="#0aa0fa">
-			<u-tabbar-item text="首页" >
-				<i class="iconfont icon-home" slot="active-icon" style="color: #0aa0fa;"></i>
-				<i class="iconfont icon-home" slot="inactive-icon"></i>
-			</u-tabbar-item>
-			<u-tabbar-item text="服务">
-				<i class="iconfont icon-modular" slot="active-icon" style="color: #0aa0fa;"></i>
-				<i class="iconfont icon-modular" slot="inactive-icon"></i>
-			</u-tabbar-item>
-			<u-tabbar-item text="消息">
-				<i class="iconfont icon-notification" slot="active-icon" style="color: #0aa0fa;"></i>
-				<i class="iconfont icon-notification" slot="inactive-icon"></i>
-			</u-tabbar-item>
-			<u-tabbar-item text="我的">
-				<i class="iconfont icon-user" slot="active-icon" style="color: #0aa0fa;"></i>
-				<i class="iconfont icon-user" slot="inactive-icon"></i>
-			</u-tabbar-item>
-		</u-tabbar> -->
 		<tabbar :value="0"></tabbar>
 	</view>
 </template>
@@ -202,7 +184,9 @@
 
 			}
 		},
-		onLoad() {},
+		onLoad() {
+			uni.hideTabBar({})
+		},
 		methods: {
 			//功能按钮点击
 			funChange(e) {
@@ -212,7 +196,6 @@
 			// 底部点击事件
 			tabbarChange(e) {
 				console.log(e)
-				
 			}
 		}
 	}

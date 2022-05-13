@@ -1,23 +1,11 @@
 <template>
 	<view class="">
 		<!-- 底部导航 -->
-		<u-tabbar :value="value" @change="change" size="50rpx" activeColor="#0aa0fa">
-			<u-tabbar-item text="首页" v-for="(item,index) in list" :key="index">
+		<u-tabbar :value="value" @change="change"  activeColor="#0aa0fa">
+			<u-tabbar-item :text="item.text" v-for="(item,index) in list" :key="index">
 				<i class="iconfont" :class="item.iconPath" slot="active-icon" style="color: #0aa0fa;"></i>
 				<i class="iconfont" :class="item.iconPath" slot="inactive-icon"></i>
 			</u-tabbar-item>
-			<!-- <u-tabbar-item text="服务">
-				<i class="iconfont icon-modular" slot="active-icon" style="color: #0aa0fa;"></i>
-				<i class="iconfont icon-modular" slot="inactive-icon"></i>
-			</u-tabbar-item>
-			<u-tabbar-item text="消息">
-				<i class="iconfont icon-notification" slot="active-icon" style="color: #0aa0fa;"></i>
-				<i class="iconfont icon-notification" slot="inactive-icon"></i>
-			</u-tabbar-item>
-			<u-tabbar-item text="我的">
-				<i class="iconfont icon-user" slot="active-icon" style="color: #0aa0fa;"></i>
-				<i class="iconfont icon-user" slot="inactive-icon"></i>
-			</u-tabbar-item> -->
 		</u-tabbar>
 	</view>
 </template>
@@ -55,7 +43,7 @@
 		},
 		methods: {
 			change(index) {
-				uni.navigateTo({
+				uni.switchTab({
 					url:this.list[index].url
 				})
 			}
@@ -63,5 +51,5 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 </style>

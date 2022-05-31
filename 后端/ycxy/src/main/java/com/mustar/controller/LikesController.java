@@ -30,4 +30,12 @@ public class LikesController {
         }
         return likesService.like(forumid,userAccount);
     }
+    @PostMapping("/del")
+    public Result cancelLike(@RequestParam String forumid, @RequestHeader String token){
+        String userAccount= JwtUtil.checkToken(token);
+        if (userAccount==null){
+            return Result.error(-1,"未登录或登录已过期");
+        }
+        return likesService.cancelLike(forumid,userAccount);
+    }
 }

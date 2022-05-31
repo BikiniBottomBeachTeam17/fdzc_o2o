@@ -128,12 +128,7 @@
 							if(res.code==200){
 								self.dyInfo.isLike=true
 								self.dyInfo.like+=1
-								self.$refs.uToast.show({
-									message: '感谢你的点赞',
-									duration: 1000,
-								})
 							}else{
-								self.dyInfo.isLike=false
 								self.$refs.uToast.show({
 									message: '点赞失败',
 									duration: 1000,
@@ -141,13 +136,25 @@
 							}
 						})
 					}else{
-						self.$refs.uToast.show({
-							message: '请不要重复点赞',
-							duration: 1000,
+						self.$request({
+							url:'/likes/del?forumid='+self.dyInfo.id,
+							method:'POST',
+							header:{
+								token:uni.getStorageSync('token')
+							}
+						}).then(res=>{
+							if(res.code==200){
+								self.dyInfo.isLike=false
+								self.dyInfo.like-=1
+							}else{
+								self.$refs.uToast.show({
+									message: '取消点赞失败',
+									duration: 1000,
+								})
+							}
 						})
 					}
 				}else{
-					self.dyInfo.isLike=false
 					self.$refs.uToast.show({
 						message: '请先登录才能点赞',
 						duration: 1000,

@@ -40,4 +40,17 @@ public class LikesServiceImpl extends ServiceImpl<LikesMapper, Likes> implements
             return Result.error(-1, "点赞失败");
         }
     }
+
+    @Override
+    public Result cancelLike(String forumid, String userAccount) {
+        try {
+            User user = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUserAccount, userAccount));
+            likesMapper.delete(Wrappers.<Likes>lambdaQuery()
+                    .eq(Likes::getForumId, forumid)
+                    .eq(Likes::getUserId, user.getUserId()));
+            return Result.success("取消点赞成功");
+        }catch (Exception e){
+            return Result.error(-1, "取消点赞失败");
+        }
+    }
 }

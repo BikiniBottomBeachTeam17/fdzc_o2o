@@ -33,13 +33,14 @@ public class ForumController {
     // 分页获取所有帖子
     @GetMapping("/getAllForum")
     public Result getAllForum(@RequestParam(defaultValue = "1") Integer pageNum,
-                              @RequestParam(defaultValue = "10") Integer pageSize) {
-        return forumService.getForumList(pageNum, pageSize);
+                              @RequestParam(defaultValue = "10") Integer pageSize,
+                              @RequestHeader(defaultValue = "") String token) {
+        return forumService.getForumList(pageNum, pageSize,token);
     }
     // 根据帖子id获取帖子信息
     @GetMapping("/getForumById")
-    public Result getForumById(@RequestParam String id) {
-        return forumService.getForumById(id);
+    public Result getForumById(@RequestParam String id,@RequestHeader(defaultValue = "") String token) {
+        return forumService.getForumById(id,token);
     }
 
     //新增帖子
@@ -54,7 +55,7 @@ public class ForumController {
 
     //根据用户账号获取帖子
     @GetMapping("/getForumByUserId")
-    public Result getForumByUserId(@RequestParam String userAccount) {
-        return forumService.getForumByUserAccount(userAccount);
+    public Result getForumByUserId(@RequestParam String userAccount,@RequestHeader(defaultValue = "") String token) {
+        return forumService.getForumByUserAccount(userAccount,token);
     }
 }

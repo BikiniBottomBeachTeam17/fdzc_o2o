@@ -65,12 +65,13 @@
 					<i class="iconfont icon-icon-message2"></i>
 					<u--text :text="dyInfo.comment==0?'评论':dyInfo.comment" size="26rpx" color="#a0a0a0"></u--text>
 				</view>
-				<view class="likeBox">
-					<i class="iconfont icon-icon-collection"></i>
-					<u--text :text="dyInfo.like==0?'赞':dyInfo.like" size="26rpx" color="#a0a0a0"></u--text>
+				<view class="likeBox" @click.stop="likeClick">
+					<i class="iconfont icon-icon-collection" :style="[{color:(dyInfo.isLike?'rgb(251, 114, 153)':'rgb(160, 160, 160)')}]"></i>
+					<u--text :text="dyInfo.like==0?'赞':dyInfo.like" size="26rpx" :color="dyInfo.isLike?'rgb(251, 114, 153)':'#a0a0a0'"></u--text>
 				</view>
 			</view>
 		</view>
+		<u-toast ref="uToast"></u-toast>
 	</view>
 </template>
 
@@ -112,7 +113,46 @@
 				uni.navigateTo({
 					url: '/pages/user/userHome?userAccount=' + id
 				})
-
+			},
+			likeClick(){
+				var self=this
+				if(uni.getStorageSync('token')){
+					if(self.dyInfo.isLike==false){
+						self.$request({
+							url:'/likes/add?forumid='+self.dyInfo.id,
+							method:'POST',
+							header:{
+								token:uni.getStorageSync('token')
+							}
+						}).then(res=>{
+							if(res.code==200){
+								self.dyInfo.isLike=true
+								self.dyInfo.like+=1
+								self.$refs.uToast.show({
+									message: '感谢你的点赞',
+									duration: 1000,
+								})
+							}else{
+								self.dyInfo.isLike=false
+								self.$refs.uToast.show({
+									message: '点赞失败',
+									duration: 1000,
+								})
+							}
+						})
+					}else{
+						self.$refs.uToast.show({
+							message: '请不要重复点赞',
+							duration: 1000,
+						})
+					}
+				}else{
+					self.dyInfo.isLike=false
+					self.$refs.uToast.show({
+						message: '请先登录才能点赞',
+						duration: 1000,
+					})
+				}
 			}
 		}
 	}

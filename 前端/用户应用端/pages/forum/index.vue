@@ -15,8 +15,7 @@
 			</view>
 		</view>
 		<view class="tabsBox">
-			<u-tabs :list="square" @click="squareClick"  lineWidth="50rpx" lineHeight="8rpx"
-				lineColor="#000000" 
+			<u-tabs :list="square" @click="squareClick" lineWidth="50rpx" lineHeight="8rpx" lineColor="#000000"
 				:activeStyle="{
 					fontSize:'30rpx',
 					color:'#000000',
@@ -30,9 +29,9 @@
 					height:'100rpx',
 					width:'120rpx'
 				}"></u-tabs>
-				<view class="addDy" @click="addForum">
-					发动态
-				</view>
+			<view class="addDy" @click="addForum">
+				发动态
+			</view>
 		</view>
 		<view class="dynamicBox">
 			<block v-for="(item,index) in dyList">
@@ -53,8 +52,10 @@
 		},
 		data() {
 			return {
-				pageNum:1,
-				pageSize:10,
+				status:'loadmore',
+				pageNum: 1,
+				temppageNum: 2,
+				pageSize: 10,
 				square: [{
 						name: '动态广场'
 					},
@@ -63,55 +64,80 @@
 					}
 				],
 				dyList: [{
-						id: 0,
-						type: 1,
-						userPortrait: '',
-						userName: '',
-						pushTime: '',
-						content: '',
-						dyImgs: [],
-						comment:0,
-						like:0
-					}
-				],
-				scrollTop:0
+					id: 0,
+					type: 1,
+					userPortrait: '',
+					userName: '',
+					pushTime: '',
+					content: '',
+					dyImgs: [],
+					comment: 0,
+					like: 0
+				}],
+				scrollTop: 0
 			}
 		},
 		onLoad() {
 			uni.hideTabBar({})
 			this.$request({
-				url:'/forum/getAllForum?pageNum='+this.pageNum+'&pageSize='+this.pageSize
-			}).then(res=>{
+				url: '/forum/getAllForum?pageNum=' + this.pageNum + '&pageSize=' + this.pageSize,
+				header:{
+					token:uni.getStorageSync('token')
+				}
+			}).then(res => {
 				console.log(res.data.forumList)
-				this.dyList=res.data.forumList
+				this.dyList = res.data.forumList
 			})
 		},
 		onShow() {
 			this.$request({
-				url:'/forum/getAllForum?pageNum='+this.pageNum+'&pageSize='+this.pageSize
-			}).then(res=>{
+				url: '/forum/getAllForum?pageNum=' + this.pageNum + '&pageSize=' + this.pageSize,
+				header:{
+					token:uni.getStorageSync('token')
+				}
+			}).then(res => {
 				console.log(res.data.forumList)
-				this.dyList=res.data.forumList
+				this.dyList = res.data.forumList
 			})
 		},
-		onPullDownRefresh(){
+		onPullDownRefresh() {
 			this.$request({
-				url:'/forum/getAllForum?pageNum='+this.pageNum+'&pageSize='+this.pageSize
-			}).then(res=>{
-				if(res.code==200){
-					this.dyList=res.data.forumList
+				url: '/forum/getAllForum?pageNum=' + this.pageNum + '&pageSize=' + this.pageSize,
+				header:{
+					token:uni.getStorageSync('token')
+				}
+			}).then(res => {
+				if (res.code == 200) {
+					this.dyList = res.data.forumList
 					uni.stopPullDownRefresh();
 				}
-				
+			})
+			this.temppageNum=1
+		},
+		onReachBottom() {
+			console.log(1)
+			var self=this
+			this.$request({
+				url: '/forum/getAllForum?pageNum=' + this.temppageNum + '&pageSize=' + this.pageSize,
+				header:{
+					token:uni.getStorageSync('token')
+				}
+			}).then(res => {
+				if (res.code == 200) {
+					for(var item in res.data.forumList){
+						self.dyList.push(res.data.forumList[item])
+					}
+					this.temppageNum+=1
+				}
 			})
 		},
 		methods: {
 			squareClick(e) {
 				console.log(e)
 			},
-			addForum(){
+			addForum() {
 				uni.navigateTo({
-					url:'/pages/forum/addForum'
+					url: '/pages/forum/addForum'
 				})
 			}
 		}
@@ -131,17 +157,19 @@
 
 	.headerBox {
 		background-color: #FFFFFF;
-		padding:0 32rpx;
-		
-		.headerTitle{
+		padding: 0 32rpx;
+
+		.headerTitle {
 			height: 100rpx;
-			margin-top:var(--status-bar-height) ;
+			margin-top: var(--status-bar-height);
 			// background-color: red;
 			line-height: 100rpx;
 		}
-		.searchBox{
+
+		.searchBox {
 			height: 80rpx;
-			.search{
+
+			.search {
 				background-color: rgb(235, 235, 235);
 				height: 80rpx;
 				border-radius: 40rpx;
@@ -163,7 +191,8 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		.addDy{
+
+		.addDy {
 			height: 100rpx;
 			line-height: 100rpx;
 			margin-right: 30rpx;

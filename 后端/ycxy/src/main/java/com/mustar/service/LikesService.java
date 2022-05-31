@@ -1,5 +1,6 @@
 package com.mustar.service;
 
+import com.mustar.common.lang.Result;
 import com.mustar.entity.Likes;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface LikesService extends IService<Likes> {
 
+    Result like(String forumid, String userAccount);
 }

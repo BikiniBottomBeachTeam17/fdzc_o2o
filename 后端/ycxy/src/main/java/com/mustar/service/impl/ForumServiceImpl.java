@@ -21,6 +21,7 @@ import com.mustar.mapper.LikesMapper;
 import com.mustar.mapper.UserMapper;
 import com.mustar.service.ForumService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mustar.utils.JwtUtil;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,7 +55,18 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
 
     //获取论坛帖子列表
     @Override
-    public Result getForumList(Integer pageNum, Integer pageSize) {
+    public Result getForumList(Integer pageNum, Integer pageSize,String token) {
+        String selfAccount= null;
+        if (token!=null&&!token.equals("")) {
+            selfAccount=JwtUtil.checkToken(token);
+        }
+        String selfId=null;
+        if (selfAccount!=null){
+            User temp=userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUserAccount,selfAccount));
+            if (temp!=null){
+                selfId=temp.getUserId();
+            }
+        }
         IPage<Forum> forumPage=forumMapper.selectPage(new Page<>(pageNum,pageSize),new QueryWrapper<Forum>().orderByDesc("forum_createtime"));
         JSONObject resJson=JSONUtil.createObj();
         for(Forum forum:forumPage.getRecords()){
@@ -88,6 +100,15 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
             jsonObject.putOnce("content",tempJsonObject.getStr("content"));
             jsonObject.putOnce("dyImgs",tempJsonObject.get("imgList"));
             jsonObject.putOnce("like",likeNum);
+            //获取是否点赞
+            if (selfId!=null){
+                Integer isLike= likesMapper.selectCount(Wrappers.<Likes>lambdaQuery()
+                        .eq(Likes::getForumId,forum.getForumId())
+                        .eq(Likes::getUserId,selfId));
+                jsonObject.putOnce("isLike",isLike!=0);
+            }else{
+                jsonObject.putOnce("isLike",false);
+            }
             jsonObject.putOnce("comment",commentNum);
             resJson.append("forumList",jsonObject);
         }
@@ -95,7 +116,18 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
     }
 
     @Override
-    public Result getForumById(String id) {
+    public Result getForumById(String id,String token) {
+        String selfAccount= null;
+        if (token!=null&&!token.equals("")) {
+            selfAccount=JwtUtil.checkToken(token);
+        }
+        String selfId=null;
+        if (selfAccount!=null){
+            User temp=userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUserAccount,selfAccount));
+            if (temp!=null){
+                selfId=temp.getUserId();
+            }
+        }
         //获取帖子信息
         Forum forum=forumMapper.selectOne(Wrappers.<Forum>lambdaQuery()
                 .eq(Forum::getForumId,id));
@@ -140,6 +172,15 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
         resJson.putOnce("dyImgs",tempJsonObject.get("imgList"));
         //获取帖子点赞数量
         resJson.putOnce("like",likeNum);
+        //获取是否点赞
+        if (selfId!=null){
+            Integer isLike= likesMapper.selectCount(Wrappers.<Likes>lambdaQuery()
+                    .eq(Likes::getForumId,forum.getForumId())
+                    .eq(Likes::getUserId,selfId));
+            resJson.putOnce("isLike",isLike!=0);
+        }else{
+            resJson.putOnce("isLike",false);
+        }
         //获取帖子评论数量
         resJson.putOnce("comment",commentNum);
         //获取评论列表
@@ -195,7 +236,18 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
 
     //根据用户账号获得帖子列表
     @Override
-    public Result getForumByUserAccount(String userAccount) {
+    public Result getForumByUserAccount(String userAccount,String token) {
+        String selfAccount= null;
+        if (token!=null&&!token.equals("")) {
+            selfAccount=JwtUtil.checkToken(token);
+        }
+        String selfId=null;
+        if (selfAccount!=null){
+            User temp=userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUserAccount,selfAccount));
+            if (temp!=null){
+                selfId=temp.getUserId();
+            }
+        }
         User user=userMapper.selectOne(Wrappers.<User>lambdaQuery()
                 .eq(User::getUserAccount,userAccount));
         List<Forum> forums=forumMapper.selectList(Wrappers.<Forum>lambdaQuery()
@@ -229,6 +281,15 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
             jsonObject.putOnce("content",tempJsonObject.getStr("content"));
             jsonObject.putOnce("dyImgs",tempJsonObject.get("imgList"));
             jsonObject.putOnce("like",likeNum);
+            //获取是否点赞
+            if (selfId!=null){
+                Integer isLike= likesMapper.selectCount(Wrappers.<Likes>lambdaQuery()
+                        .eq(Likes::getForumId,forum.getForumId())
+                        .eq(Likes::getUserId,selfId));
+                jsonObject.putOnce("isLike",isLike!=0);
+            }else {
+                jsonObject.putOnce("isLike",false);
+            }
             jsonObject.putOnce("comment",commentNum);
             resJson.append("forumList",jsonObject);
         }

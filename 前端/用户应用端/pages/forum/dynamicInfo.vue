@@ -95,7 +95,10 @@
 		onLoad(option) {
 			var self = this
 			this.$request({
-				url: '/forum/getForumById?id=' + option.id
+				url: '/forum/getForumById?id=' + option.id,
+				header:{
+					token:uni.getStorageSync('token')
+				}
 			}).then(res => {
 				console.log(res)
 				self.dynamicInfo = res.data
@@ -133,7 +136,8 @@
 							complete() {
 								self.comShow=false
 								self.$request({
-									url: '/forum/getForumById?id=' + self.dynamicInfo.id
+									url: '/forum/getForumById?id=' + self.dynamicInfo.id,
+									token:uni.getStorageSync('token')
 								}).then(res => {
 									self.dynamicInfo = res.data
 								})

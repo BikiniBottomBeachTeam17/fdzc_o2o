@@ -62,21 +62,13 @@ public class FileController {
         }
         String newFileName = UUID.randomUUID()+".jpg";
         String date=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        // 1 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials(SECRRET_ID, SECRET_KEY);
-        // 2 设置bucket的区域, COS地域的简称请参照 https://cloud.tencent.com/document/product/436/6224
         ClientConfig clientConfig = new ClientConfig(new Region(REGION));
-        // 3 生成cos客户端
         COSClient cosclient = new COSClient(cred, clientConfig);
-        // bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
-
-        // 简单文件上传, 最大支持 5 GB, 适用于小文件上传, 建议 20 M 以下的文件使用该接口
-        // 大文件上传请参照 API 文档高级 API 上传
         File localFile = null;
         try {
             localFile = File.createTempFile("temp",null);
             file.transferTo(localFile);
-            // 指定要上传到 COS 上的路径
             String key = date+"/"+newFileName;
             PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, key, localFile);
             PutObjectResult putObjectResult = cosclient.putObject(putObjectRequest);
@@ -84,13 +76,13 @@ public class FileController {
         } catch (IOException e) {
             return Result.error(-1,e.getMessage());
         }finally {
-            // 关闭客户端(关闭后台线程)
             cosclient.shutdown();
         }
 
     }
     @RequestMapping("/viewPhoto/{photopath}")
-    public void getFeedBackPicture(HttpServletResponse response, @PathVariable("photopath")String photopath) throws Exception{
+    public void getFeedBackPicture(HttpServletResponse response,
+                                   @PathVariable("photopath")String photopath) throws Exception{
         String realPath="C:\\Users\\chen\\Desktop\\新建文件夹\\"+photopath;
         FileInputStream inputStream = new FileInputStream(realPath);
         int i = inputStream.available();

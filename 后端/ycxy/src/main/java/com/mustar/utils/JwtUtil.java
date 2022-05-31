@@ -13,14 +13,8 @@ public class JwtUtil {
         //有效时间 三天
         long time = 1000 * 60 * 60 * 24 * 3;
         return jwtBuilder
-                //header
-//                .setHeaderParam("typ","JWT")
-//                .setHeaderParam("alg","HS256")
-                //payload
                 .setExpiration(new Date(System.currentTimeMillis()+ time))
-//                .setHeaderParam("iss","mustar")
                 .setHeaderParam("userAccount",userAccount)
-                //signatrue
                 .signWith(SignatureAlgorithm.HS256,signatrue)
                 .compact();
     }

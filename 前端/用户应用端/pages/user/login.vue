@@ -47,7 +47,7 @@
 			return {
 				userInfo: {
 					userAccount: '',
-					userPassword: ''
+					userPassword: '',
 				}
 			}
 		},

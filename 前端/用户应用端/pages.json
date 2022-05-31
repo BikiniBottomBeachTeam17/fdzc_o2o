@@ -12,67 +12,68 @@
 		},
 		{
 			// 用户主页
-			"path":"pages/user/userHome",
-			"style":{}
+			"path": "pages/user/userHome",
+			"style": {}
 		},
 		{
-			"path":"pages/user/userInfoSetting",
-			"style":{}
+			"path": "pages/user/userInfoSetting",
+			"style": {}
 		},
 		{
 			// 设置
-			"path":"pages/user/setting",
-			"style":{}
+			"path": "pages/user/setting",
+			"style": {}
 		},
 		{
 			// 用户地址
-			"path":"pages/user/site",
-			"style":{}
+			"path": "pages/user/site",
+			"style": {}
 		},
 		{
 			// 服务
-			"path":"pages/service/index",
-			"style":{}
+			"path": "pages/service/index",
+			"style": {}
 		},
 		{
 			// 帖子
-			"path":"pages/forum/index",
-			"style":{
-				"enablePullDownRefresh":true
+			"path": "pages/forum/index",
+			"style": {
+				"enablePullDownRefresh": true,
+				"onReachBottomDistance": 150
 			}
-			
+
 		},
 		{
 			// 帖子详情
-			"path":"pages/forum/dynamicInfo",
-			"style":{}
+			"path": "pages/forum/dynamicInfo",
+			"style": {}
 		},
 		{
 			//新增帖子
-			"path":"pages/forum/addForum",
-			"style":{}
+			"path": "pages/forum/addForum",
+			"style": {}
 		},
 		{
 			// 消息主页
-			"path":"pages/news/index",
-			"style":{}
+			"path": "pages/news/index",
+			"style": {}
 		},
 		{
 			// 登录
-			"path":"pages/user/login",
-			"style":{}
+			"path": "pages/user/login",
+			"style": {}
 		},
 		{
 			// 注册
-			"path":"pages/user/register",
-			"style":{}
+			"path": "pages/user/register",
+			"style": {}
 		},
 		{
 			// 注册时的信息设置
-			"path":"pages/user/registerInfo",
-			"style":{}
+			"path": "pages/user/registerInfo",
+			"style": {}
 		}
-		
+
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -89,13 +90,10 @@
 			"pagePath": "pages/index/index"
 		}, {
 			"pagePath": "pages/user/index"
-		}
-		, {
+		}, {
 			"pagePath": "pages/news/index"
-		}
-		, {
+		}, {
 			"pagePath": "pages/forum/index"
-		}
-		]
+		}]
 	}
 }

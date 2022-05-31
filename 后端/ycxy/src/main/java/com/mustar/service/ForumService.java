@@ -16,11 +16,11 @@ import java.util.Map;
  */
 public interface ForumService extends IService<Forum> {
     //获取论坛帖子列表
-    Result getForumList(Integer pageNum, Integer pageSize);
+    Result getForumList(Integer pageNum, Integer pageSize,String token);
 
-    Result getForumById(String id);
+    Result getForumById(String id,String token);
 
     Result addForum(Map<String, Object> forum, String userAccount);
 
-    Result getForumByUserAccount(String userAccount);
+    Result getForumByUserAccount(String userAccount,String token);
 }

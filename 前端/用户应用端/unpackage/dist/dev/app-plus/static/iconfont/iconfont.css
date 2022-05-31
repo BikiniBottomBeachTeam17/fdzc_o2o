@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3391459 */
-  src: url('/static/iconfont/iconfont.ttf?t=1652443092246') format('truetype');
+  src: url('/static/iconfont/iconfont.ttf') format('truetype');
 }
 
 .iconfont {
@@ -9,6 +9,158 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mima:before {
+  content: "\e8b2";
+}
+
+.icon-shequ:before {
+  content: "\e8b8";
+}
+
+.icon-bianji:before {
+  content: "\e61f";
+}
+
+.icon-31fanhui1:before {
+  content: "\e600";
+}
+
+.icon-icon-message2:before {
+  content: "\e675";
+}
+
+.icon-zhifuguanli:before {
+  content: "\e64a";
+}
+
+.icon-favorite:before {
+  content: "\e62c";
+}
+
+.icon-yimaidaoshangpin:before {
+  content: "\e620";
+}
+
+.icon-wofabude:before {
+  content: "\e630";
+}
+
+.icon-wodepinglun:before {
+  content: "\e621";
+}
+
+.icon-aftersales:before {
+  content: "\e67a";
+}
+
+.icon-dingdanguanli:before {
+  content: "\e636";
+}
+
+.icon-maichu:before {
+  content: "\e618";
+}
+
+.icon-gengduo:before {
+  content: "\e785";
+}
+
+.icon-daishouhuo:before {
+  content: "\e640";
+}
+
+.icon-shangpinguanli:before {
+  content: "\e696";
+}
+
+.icon-wodedianpu:before {
+  content: "\e613";
+}
+
+.icon-wodeshangpin:before {
+  content: "\e619";
+}
+
+.icon-youhuiquan:before {
+  content: "\e8c0";
+}
+
+.icon-daipingjia:before {
+  content: "\e7a3";
+}
+
+.icon-wodetiezi:before {
+  content: "\e660";
+}
+
+.icon-renzhengzhongxin:before {
+  content: "\e657";
+}
+
+.icon-wozanguode:before {
+  content: "\e669";
+}
+
+.icon-daishiyong:before {
+  content: "\e611";
+}
+
+.icon-wodehuodong2:before {
+  content: "\e9ad";
+}
+
+.icon-wodeqianbao:before {
+  content: "\e60c";
+}
+
+.icon-daifukuan:before {
+  content: "\e609";
+}
+
+.icon-yingye:before {
+  content: "\e74b";
+}
+
+.icon-faxian:before {
+  content: "\e68c";
+}
+
+.icon-jiajianzujianjiahao:before {
+  content: "\e64d";
+}
+
+.icon-yonghuxinxi:before {
+  content: "\e64b";
+}
+
+.icon-icon-collection:before {
+  content: "\e666";
+}
+
+.icon-icon-notice:before {
+  content: "\e677";
+}
+
+.icon-icon-pie:before {
+  content: "\e67b";
+}
+
+.icon-icon-star:before {
+  content: "\e681";
+}
+
+.icon-xiaoxi:before {
+  content: "\e62b";
+}
+
+.icon-shezhi:before {
+  content: "\e62e";
+}
+
+.icon-shoucang:before {
+  content: "\e62f";
 }
 
 .icon-fuwuchaoshi:before {

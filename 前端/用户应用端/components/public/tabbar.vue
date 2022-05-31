@@ -21,13 +21,13 @@
 						text: '首页'
 					},
 					{
-						url: '/pages/index/index',
-						iconPath: 'icon-modular',
-						text: '服务'
+						url: '/pages/forum/index',
+						iconPath: 'icon-faxian',
+						text: '热点'
 					},
 					{
-						url: '/pages/index/index',
-						iconPath: 'icon-notification',
+						url: '/pages/news/index',
+						iconPath: 'icon-xiaoxi',
 						text: '消息'
 					},
 					{

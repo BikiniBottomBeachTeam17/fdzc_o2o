@@ -1,4 +1,10 @@
 import App from './App'
+import request from 'utils/request.js'
+Vue.prototype.$request = request 
+
+import upImg from 'utils/upImg.js'
+Vue.prototype.$upImg = upImg
+
 
 
 // #ifndef VUE3

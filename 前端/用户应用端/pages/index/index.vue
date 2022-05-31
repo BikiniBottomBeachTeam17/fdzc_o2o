@@ -29,7 +29,7 @@
 		</view>
 		<!-- 首页宫格导航 -->
 		<view class="iconNav">
-			<u-grid :border="false" col="4">
+			<u-grid :border="false" col="4" @click="iconClick">
 				<u-grid-item v-for="(listItem,listIndex) in iconNav" :key="listIndex" class="gridItem">
 					<u--image :showLoading="true" :src="listItem.img" width="96rpx" height="96rpx" shape="circle">
 					</u--image>
@@ -74,9 +74,6 @@
 				<!-- <text>{{item.title}}</text> -->
 			</view>
 		</view>
-
-
-
 
 
 
@@ -162,7 +159,7 @@
 					},
 				],
 				funNum: 0,
-				//最新公告
+				//最新公告，后端获取
 				newNotice: [
 					{
 						title: "关于从4月11日起恢复线下教学的通知",
@@ -196,6 +193,14 @@
 			// 底部点击事件
 			tabbarChange(e) {
 				console.log(e)
+			},
+			iconClick(e){
+				var len=this.iconNav.length
+				if(e==len-1){
+					uni.navigateTo({
+						url:'../service/index'
+					})
+				}
 			}
 		}
 	}

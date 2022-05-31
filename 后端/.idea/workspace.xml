@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="59a81c6a-00f0-4c73-9127-50ad5e1927e8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ycxy/src/main/java/com/mustar/entity/vo/ForumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ycxy/src/main/java/com/mustar/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/components/public/tabbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/components/public/tabbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/pages.json" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/pages.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/pages/index/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/pages/index/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/pages/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/pages/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/static/iconfont/iconfont.css" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/static/iconfont/iconfont.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/static/iconfont/iconfont.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/static/iconfont/iconfont.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/uni.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/uni.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/app-config-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/app-config-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/app-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/app-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/app-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/app-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/static/iconfont/iconfont.css" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/static/iconfont/iconfont.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/static/iconfont/iconfont.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/../前端/用户应用端/unpackage/dist/dev/app-plus/static/iconfont/iconfont.ttf" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="29tHTckTZPpZ5IYxzUycanWPMkh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="foldersAlwaysOnTop" value="false" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+    <option name="sortByType" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="59a81c6a-00f0-4c73-9127-50ad5e1927e8" name="Changes" comment="" />
+      <created>1653925470728</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653925470728</updated>
+      <workItem from="1653925472081" duration="24000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+</project>

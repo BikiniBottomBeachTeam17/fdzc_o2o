@@ -142,6 +142,7 @@
 							position: 'bottom',
 							duration: 1000,
 							complete() {
+								self.comment=''
 								self.comShow=false
 								self.$request({
 									url: '/forum/getForumById?id=' + self.dynamicInfo.id,

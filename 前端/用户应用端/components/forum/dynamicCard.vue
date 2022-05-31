@@ -119,7 +119,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.dynamicBox {
 		background-color: #FFFFFF;
 		padding: 0 16rpx;

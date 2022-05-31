@@ -21,10 +21,15 @@ import com.mustar.mapper.LikesMapper;
 import com.mustar.mapper.UserMapper;
 import com.mustar.service.ForumService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.Data;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
 
@@ -67,7 +72,18 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
             jsonObject.putOnce("authorAccount",user.getUserAccount());
             jsonObject.putOnce("userPortrait",user.getUserPortrait());
             jsonObject.putOnce("userName",user.getUserName());
-            jsonObject.putOnce("pushTime",forum.getForumCreatetime());
+            long until = forum.getForumCreatetime().until(LocalDateTime.now(), ChronoUnit.SECONDS);
+            if (until < 60) {
+                jsonObject.putOnce("pushTime", "刚刚");
+            }else if (until < 3600) {
+                jsonObject.putOnce("pushTime", until / 60 + "分钟前");
+            }else if (until < 3600 * 24) {
+                jsonObject.putOnce("pushTime", until / 3600 + "小时前");
+            }else if (until < 3600 * 24 * 3) {
+                jsonObject.putOnce("pushTime", until / (3600 * 24) + "天前");
+            }else {
+                jsonObject.putOnce("pushTime", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(forum.getForumCreatetime()));
+            }
             JSONObject tempJsonObject = JSONUtil.parseObj(forum.getForumContentjson());
             jsonObject.putOnce("content",tempJsonObject.getStr("content"));
             jsonObject.putOnce("dyImgs",tempJsonObject.get("imgList"));
@@ -105,7 +121,18 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
         //获取作者名称
         resJson.putOnce("userName",user.getUserName());
         //获取帖子发布时间
-        resJson.putOnce("pushTime",forum.getForumCreatetime());
+        long until = forum.getForumCreatetime().until(LocalDateTime.now(), ChronoUnit.SECONDS);
+        if (until < 60) {
+            resJson.putOnce("pushTime", "刚刚");
+        }else if (until < 3600) {
+            resJson.putOnce("pushTime", until / 60 + "分钟前");
+        }else if (until < 3600 * 24) {
+            resJson.putOnce("pushTime", until / 3600 + "小时前");
+        }else if (until < 3600 * 24 * 3) {
+            resJson.putOnce("pushTime", until / (3600 * 24) + "天前");
+        }else {
+            resJson.putOnce("pushTime", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(forum.getForumCreatetime()));
+        }
         JSONObject tempJsonObject = JSONUtil.parseObj(forum.getForumContentjson());
         //获取帖子内容
         resJson.putOnce("content",tempJsonObject.getStr("content"));
@@ -176,7 +203,18 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
             jsonObject.putOnce("authorAccount",user.getUserAccount());
             jsonObject.putOnce("userPortrait",user.getUserPortrait());
             jsonObject.putOnce("userName",user.getUserName());
-            jsonObject.putOnce("pushTime",forum.getForumCreatetime());
+            long until = forum.getForumCreatetime().until(LocalDateTime.now(), ChronoUnit.SECONDS);
+            if (until < 60) {
+                jsonObject.putOnce("pushTime", "刚刚");
+            }else if (until < 3600) {
+                jsonObject.putOnce("pushTime", until / 60 + "分钟前");
+            }else if (until < 3600 * 24) {
+                jsonObject.putOnce("pushTime", until / 3600 + "小时前");
+            }else if (until < 3600 * 24 * 3) {
+                jsonObject.putOnce("pushTime", until / (3600 * 24) + "天前");
+            }else {
+                jsonObject.putOnce("pushTime", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(forum.getForumCreatetime()));
+            }
             JSONObject tempJsonObject = JSONUtil.parseObj(forum.getForumContentjson());
             jsonObject.putOnce("content",tempJsonObject.getStr("content"));
             jsonObject.putOnce("dyImgs",tempJsonObject.get("imgList"));

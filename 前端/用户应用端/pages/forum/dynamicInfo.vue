@@ -10,7 +10,7 @@
 				</view>
 				<view class="rightBox"></view>
 			</view>
-			
+
 		</view>
 		<view class="content">
 			<dynamicCard :dyInfo="dynamicInfo" :isInfo="true" :lines="lines"></dynamicCard>
@@ -43,17 +43,28 @@
 		</view>
 		<!-- 底部，回复 -->
 		<view class="replyBox">
-			<view class="default" v-if="!commentShow">
+			<view class="default" @click="open">
 				<!-- 输入框 -->
 				<view class="inputBtn">
 					觉得好玩说两句...
 				</view>
 			</view>
-			<view class="inputShow" v-if="commentShow">
+			<!-- <view class="inputShow" v-if="commentShow">
 				<u-textarea v-model="comment" border="none" maxlength="-1" height="150" ref="textarea"
 					:keyboardheightchange="test"></u-textarea>
-			</view>
+			</view> -->
 		</view>
+		<u-popup :show="comShow" @close="close" @open="open">
+			<view class="inputShow">
+				<view class="commentContent">
+					<u-textarea v-model="comment" border="none" maxlength="-1" height="150" ref="textarea"></u-textarea>
+				</view>
+				<view class="upComment">
+					<u-button type="primary" :plain="false" text="评 论" color="#0aa0fa" @click="inputComment"></u-button>
+				</view>
+			</view>
+		</u-popup>
+		<u-toast ref="uToast"></u-toast>
 	</view>
 </template>
 
@@ -65,7 +76,6 @@
 		},
 		data() {
 			return {
-				comment: '',
 				lines: 0,
 				dynamicInfo: {
 					id: 2,
@@ -78,7 +88,8 @@
 					like: 0,
 					comList: []
 				},
-				commentShow: false
+				comShow: false,
+				comment: '',
 			}
 		},
 		onLoad(option) {
@@ -94,8 +105,42 @@
 			backTo() {
 				uni.navigateBack({})
 			},
-			test() {
-				this.commentShow = true
+			open() {
+				this.comShow=true
+			},
+			close() {
+				this.comShow = false
+			},
+			inputComment(){
+				var self=this
+				this.$request({
+					url:'/comments/add',
+					method:'POST',
+					data:{
+						content:this.comment,
+						imgList:null,
+						forumId:this.dynamicInfo.id
+					},
+					header:{
+						token:uni.getStorageSync('token')
+					}
+				}).then(res=>{
+					if(res.code==200){
+						self.$refs.uToast.show({
+							message: '评论成功',
+							position: 'bottom',
+							duration: 1000,
+							complete() {
+								self.comShow=false
+								self.$request({
+									url: '/forum/getForumById?id=' + self.dynamicInfo.id
+								}).then(res => {
+									self.dynamicInfo = res.data
+								})
+							}
+						})
+					}
+				})
 			}
 		}
 	}
@@ -215,9 +260,17 @@
 			}
 		}
 
-		.inputShow {
-			width: 100%;
-			height: 200rpx;
+		// .inputShow {
+		// 	width: 100%;
+		// 	height: 200rpx;
+		// }
+	}
+	.inputShow{
+		padding: 16rpx;
+		.commentContent{
+			border: 1px solid rgb(220,220,220);
+			margin-bottom: 16rpx;
 		}
 	}
+	
 </style>

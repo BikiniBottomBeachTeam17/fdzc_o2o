@@ -109,7 +109,7 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
         int commentNum=commentsMapper.selectCount(Wrappers.<Comments>lambdaQuery()
                 .eq(Comments::getForumId,forum.getForumId()));
         List<Comments> comments = commentsMapper.selectList(Wrappers.<Comments>lambdaQuery()
-                .eq(Comments::getForumId, forum.getForumId()));
+                .eq(Comments::getForumId, forum.getForumId()).orderByAsc(Comments::getCommentsCreatetime));
         //创建返回结果
         JSONObject resJson=JSONUtil.createObj();
         //获取帖子id
@@ -145,6 +145,7 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
         //获取评论列表
         for(Comments comment:comments){
             JSONObject jsonObject=JSONUtil.createObj();
+            long time=comment.getCommentsCreatetime().until(LocalDateTime.now(), ChronoUnit.SECONDS);
             //获取评论id
             jsonObject.putOnce("id",comment.getCommentsId());
             User commentUser=userMapper.selectOne(Wrappers.<User>lambdaQuery()
@@ -154,7 +155,17 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
             //获取评论者名称
             jsonObject.putOnce("userName",commentUser.getUserName());
             //获取评论时间
-            jsonObject.putOnce("pushTime",comment.getCommentsCreatetime());
+            if (time < 60) {
+                jsonObject.putOnce("pushTime", "刚刚");
+            }else if (time < 3600) {
+                jsonObject.putOnce("pushTime", time / 60 + "分钟前");
+            }else if (time < 3600 * 24) {
+                jsonObject.putOnce("pushTime", time / 3600 + "小时前");
+            }else if (time < 3600 * 24 * 3) {
+                jsonObject.putOnce("pushTime", time / (3600 * 24) + "天前");
+            }else {
+                jsonObject.putOnce("pushTime", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(comment.getCommentsCreatetime()));
+            }
             //获取评论内容
             JSONObject tempJsonObject1 = JSONUtil.parseObj(comment.getCommentsContentjson());
             jsonObject.putOnce("content",tempJsonObject1.getStr("content"));
@@ -168,7 +179,6 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
     public Result addForum(Map<String,Object> forum, String userAccount) {
         User user=userMapper.selectOne(Wrappers.<User>lambdaQuery()
                 .eq(User::getUserAccount,userAccount));
-        System.out.println(forum);
         try {
             Forum addForum=new Forum();
             addForum.setForumId(IdUtil.simpleUUID());
@@ -189,7 +199,7 @@ public class ForumServiceImpl extends ServiceImpl<ForumMapper, Forum> implements
         User user=userMapper.selectOne(Wrappers.<User>lambdaQuery()
                 .eq(User::getUserAccount,userAccount));
         List<Forum> forums=forumMapper.selectList(Wrappers.<Forum>lambdaQuery()
-                .eq(Forum::getUserId,user.getUserId()));
+                .eq(Forum::getUserId,user.getUserId()).orderByDesc(Forum::getForumCreatetime));
         JSONObject resJson=JSONUtil.createObj();
         for(Forum forum:forums){
             int likeNum=likesMapper.selectCount(Wrappers.<Likes>lambdaQuery()

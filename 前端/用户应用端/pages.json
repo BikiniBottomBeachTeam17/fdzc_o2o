@@ -37,7 +37,10 @@
 		{
 			// 帖子
 			"path":"pages/forum/index",
-			"style":{}
+			"style":{
+				"enablePullDownRefresh":true
+			}
+			
 		},
 		{
 			// 帖子详情

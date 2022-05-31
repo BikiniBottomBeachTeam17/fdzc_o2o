@@ -86,12 +86,23 @@
 				this.dyList=res.data.forumList
 			})
 		},
-		onPullDownRefresh(){
+		onShow() {
 			this.$request({
 				url:'/forum/getAllForum?pageNum='+this.pageNum+'&pageSize='+this.pageSize
 			}).then(res=>{
 				console.log(res.data.forumList)
 				this.dyList=res.data.forumList
+			})
+		},
+		onPullDownRefresh(){
+			this.$request({
+				url:'/forum/getAllForum?pageNum='+this.pageNum+'&pageSize='+this.pageSize
+			}).then(res=>{
+				if(res.code==200){
+					this.dyList=res.data.forumList
+					uni.stopPullDownRefresh();
+				}
+				
 			})
 		},
 		methods: {

@@ -94,7 +94,6 @@
 			if (this.dyInfo.authorAccount == uni.getStorageSync('userAccount')) {
 				this.isSelf = true
 			}
-			console.log(this.isSelf + "  ")
 		},
 		methods: {
 			previewImage(url, urls) {
@@ -283,3 +282,5 @@
 
 	}
 </style>
+
+

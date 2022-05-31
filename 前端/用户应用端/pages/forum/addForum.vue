@@ -21,6 +21,7 @@
 			<u-upload :fileList="imgList" @afterRead="afterRead" @delete="deletePic" name="1" multiple :maxCount="9" width="200" height="200">
 			</u-upload>
 		</view>
+		<u-toast ref="uToast"></u-toast>
 	</view>
 </template>
 
@@ -87,7 +88,16 @@
 						token:uni.getStorageSync('token')
 					}
 				}).then(res=>{
-					console.log(res)
+					if(res.code==200){
+						self.$refs.uToast.show({
+							message: '发布成功',
+							position: 'bottom',
+							duration: 1000,
+							complete() {
+								uni.navigateBack({})
+							}
+						})
+					}
 				})
 			}
 		}

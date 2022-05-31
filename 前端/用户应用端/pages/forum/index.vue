@@ -33,7 +33,7 @@
 				发动态
 			</view>
 		</view>
-		<view class="dynamicBox">
+		<view class="dynamicBox" style="background-color: rgb(240,240,240);">
 			<block v-for="(item,index) in dyList">
 				<dynamicCard :dyInfo="item" :isInfo="false" :lines="4"></dynamicCard>
 			</block>
@@ -112,7 +112,7 @@
 					uni.stopPullDownRefresh();
 				}
 			})
-			this.temppageNum=1
+			this.temppageNum=2
 		},
 		onReachBottom() {
 			console.log(1)

@@ -115,6 +115,14 @@
 				this.comShow = false
 			},
 			inputComment(){
+				if(this.comment==''){
+					this.$refs.uToast.show({
+						message: '还没有输入评论',
+						position: 'bottom',
+						duration: 1000
+					})
+					return
+				}
 				var self=this
 				this.$request({
 					url:'/comments/add',

@@ -123,6 +123,14 @@
 				uni.navigateBack({})
 			},
 			register() {
+				if(this.userInfo.userName==''){
+					this.$refs.uToast.show({
+						message: '昵称不能为空哦',
+						position: 'bottom',
+						duration: 1000
+					})
+					return
+				}
 				var self = this
 				this.userInfo.userGender = (this.userInfo.userGender=='男生')?'1':'0'
 				this.$request({

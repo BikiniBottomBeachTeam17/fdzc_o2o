@@ -122,7 +122,7 @@
 		methods: {
 			sexSelect(e) {
 				this.userInfo.userGender = e.type
-				this.upInfo()
+				// this.upInfo()
 			},
 			avatarUpload(pic) {
 				var self = this
@@ -130,11 +130,19 @@
 				this.$upImg(pic.path).then(res => {
 					console.log(res)
 					self.userInfo.userPortrait = res
-					self.upInfo()
+					// self.upInfo()
 				})
 			},
 			//更新数据
 			upInfo() {
+				if(this.userInfo.userName==''){
+					this.$refs.uToast.show({
+						message: '昵称不能为空哦',
+						position: 'bottom',
+						duration: 1000
+					})
+					return
+				}
 				var self = this
 				this.$request({
 					url: '/user/UpUserInfo',

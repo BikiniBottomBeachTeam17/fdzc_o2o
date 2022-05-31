@@ -76,6 +76,14 @@
 				console.log(this.uploadImg)
 			},
 			addForum(){
+				if(this.content==''&&this.imgList.length==0){
+					this.$refs.uToast.show({
+						message: '请不要发送空白内容',
+						position: 'bottom',
+						duration: 1000,
+					})
+					return
+				}
 				var self=this
 				this.$request({
 					url:'/forum/addForum',

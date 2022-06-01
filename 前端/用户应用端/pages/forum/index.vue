@@ -1,5 +1,5 @@
 <template>
-	<view class="page">
+	<view class="page" style="height: auto;">
 		<!-- 顶部占位符 -->
 		<view class="gapBox"></view>
 		<view class="headerBox">

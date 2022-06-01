@@ -37,7 +37,7 @@
 
 	.page {
 		width: 100%;
-		height: auto;
+		height: 100%;
 		background-color: rgb(240, 240, 240);
 		position: absolute;
 	}

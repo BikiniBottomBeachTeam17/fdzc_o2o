@@ -109,6 +109,14 @@
 				uni.navigateBack({})
 			},
 			open() {
+				if(!uni.getStorageSync('token')){
+					this.$refs.uToast.show({
+						message: '请先登录才能评论哦',
+						position: 'bottom',
+						duration: 1000
+					})
+					return
+				}
 				this.comShow=true
 			},
 			close() {
